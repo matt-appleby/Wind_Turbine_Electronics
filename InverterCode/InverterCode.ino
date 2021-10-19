@@ -27,4 +27,11 @@ void loop() {
     pinMode(1,LOW);
     delay(switchingPeriod-wait)
   }
+  for (int i = 0; i <= period/switchingPeriod; i++) {
+    pinMode(2,HIGH);
+    float wait = LineOneLow[i]-LineOneHigh[i];
+    delay(wait);//millis
+    pinMode(2,LOW);
+    delay(switchingPeriod-wait)
+  }
   }
