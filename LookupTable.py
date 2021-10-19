@@ -20,39 +20,30 @@ switchingPeriod=0.05 #s
 scalingConstant=1#0.1
 phaseShift=0
 
-LineOneHigh=[]
-LineOneLow=[]
-LineTwoHigh=[]
-LineTwoLow=[]
-LineThreeHigh=[]
-LineThreeLow=[]
 
-LineOne=[]
-LineOneStates=[]
+def PhaseTimingGen(phaseShift):
+    LineHigh=[]
+    LineLow=[]
+    for cycle in range(int((int(period/switchingPeriod))/2)):#iterates throught number of cycles
+        time=cycle*switchingPeriod
+        TurnOn=switchingPeriod*math.sin((2*(3.14)/period)*time+phaseShift)
+        LineHigh.append(round(time,3))
+        LineLow.append(round((time+TurnOn),3))
+    return LineHigh, LineLow
 
-for cycle in range(int((int(period/switchingPeriod))/2)):#iterates throught number of cycles
-    time=cycle*switchingPeriod
-    TurnOn=switchingPeriod*math.sin((2*(3.14)/period)*time+phaseShift)
-    #TurnOff=period-TurnOn
-    
-    #turn on is turn on length
 
-    
-    LineOneHigh.append(round(time,3))
-    LineOneLow.append(round((time+TurnOn),3))
+LineOneHigh, LineOneLow = PhaseTimingGen(0)
+LineTwoHigh, LineTwoLow = PhaseTimingGen(2*3.13/3)
+LineThreeHigh, LineThreeLow = PhaseTimingGen(4*3.14/3)
 
-    LineOne.append(round(time,3))
-    LineOne.append(round((time+TurnOn),3))
-
-    LineOneStates.append(1)
-    #LineOneStates.append(0)
-
+print("Line One")
 print(LineOneHigh)
 print(LineOneLow)
 
+print("Line Two")
+print(LineTwoHigh)
+print(LineTwoLow)
 
-plt.scatter(LineOneLow, LineOneStates, c='y')
-plt.scatter(LineOneHigh, LineOneStates, c='b')
-plt.show()
-
-#plt.plot(LineOne,1)
+print("Line Three")
+print(LineThreeHigh)
+print(LineThreeLow)
