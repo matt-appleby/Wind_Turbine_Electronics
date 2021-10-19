@@ -30,7 +30,7 @@ LineThreeLow=[]
 LineOne=[]
 LineOneStates=[]
 
-for cycle in range(int((int(period/switchingPeriod)+2)/2)):#iterates throught number of cycles
+for cycle in range(int((int(period/switchingPeriod))/2)):#iterates throught number of cycles
     time=cycle*switchingPeriod
     TurnOn=switchingPeriod*math.sin((2*(3.14)/period)*time+phaseShift)
     #TurnOff=period-TurnOn
