@@ -69,3 +69,4 @@ def PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow):
     #elif PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow# 3, 2, 1
     else:
         print()
+#test
