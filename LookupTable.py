@@ -33,8 +33,8 @@ def PhaseTimingGen(phaseShift):
 
 
 LineOneHigh, LineOneLow = PhaseTimingGen(0)
-LineTwoHigh, LineTwoLow = PhaseTimingGen(2*3.13/3)
-LineThreeHigh, LineThreeLow = PhaseTimingGen(4*3.14/3)
+LineTwoHigh, LineTwoLow = PhaseTimingGen(2*3.14/3)
+LineThreeHigh, LineThreeLow = PhaseTimingGen(-2*3.14/3)
 
 print("Line One")
 print(LineOneHigh)
@@ -47,3 +47,23 @@ print(LineTwoLow)
 print("Line Three")
 print(LineThreeHigh)
 print(LineThreeLow)
+
+print("Time between for loops in arduino")
+print(period/6)
+
+
+def PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow):
+    #sort the turn off of the three lines into cronalogical order per switching cycle
+    if PWMOneLow < PWMTwoLow and PWMTwoLow < PWMThreeLow:# 1, 2 , 3
+        print()
+    elif PWMOneLow < PWMThreeLow and PWMThreeLow < PWMTwoLow: # 1, 3, 2
+        print
+    elif PWMTwoLow < PWMOneLow and PWMOneLow < PWMThreeLow# 2, 1, 3
+        print()
+    elif PWMTwoLow < PWMThreeLow and PWMThreeLow < PWMOneLow# 2, 3, 1
+        print()
+    elif PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow# 3, 1, 2
+        print()
+    #elif PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow# 3, 2, 1
+    else:
+        print()
