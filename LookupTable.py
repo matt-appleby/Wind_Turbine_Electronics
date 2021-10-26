@@ -4,6 +4,8 @@ Conceptually easier and faster to run
 
 local: wind
 
+hi
+
 todo:
 --output a pwm wave that actually works
 --Do that for all three phases both positive and negative parts
