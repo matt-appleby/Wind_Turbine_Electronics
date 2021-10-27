@@ -4,6 +4,8 @@ Conceptually easier and faster to run
 
 local: wind
 
+hi
+
 todo:
 --output a pwm wave that actually works
 --Do that for all three phases both positive and negative parts
@@ -73,7 +75,7 @@ def PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow):
     #elif PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow# 3, 2, 1
     else:
         print()
-
+        
 def Switchingcycle(degrees):
     if degrees < 60:#0-60
         print("1 high, 2 low, 3 high")

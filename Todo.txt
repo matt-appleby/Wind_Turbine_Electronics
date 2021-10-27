@@ -1,3 +1,4 @@
+
 Todo list:
 
 1. 	Get delays working within one switching period
@@ -5,4 +6,4 @@ Todo list:
 3.	Dead times
 4.	Port to arduino
 5.	Test
-^. 	Profit!
+6. 	Profit!
