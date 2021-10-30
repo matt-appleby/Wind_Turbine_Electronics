@@ -4,11 +4,9 @@ Conceptually easier and faster to run
 
 local: wind
 
-hi
-
-todo:
---output a pwm wave that actually works
---Do that for all three phases both positive and negative parts
+Todo:
+--build visualistions
+--figure out dead times
 
 """
 import math
@@ -64,19 +62,43 @@ def PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow):
         print("PWM three low")
         print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
     elif PWMOneLow < PWMThreeLow and PWMThreeLow < PWMTwoLow: # 1, 3, 2
-        print()
-        #like above but change for each switch
+        print("PWM one low")
+        print("wait PWMHigh-PWM low 1")
+        print("PWM three low")
+        print("wait PWMHigh-PWMLow1-PWMLow3")
+        print("PWM two low")
+        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
     elif PWMTwoLow < PWMOneLow and PWMOneLow < PWMThreeLow:# 2, 1, 3
-        print()
+        print("PWM two low")
+        print("wait PWMHigh-PWM low 1")
+        print("PWM one low")
+        print("wait PWMHigh-PWMLow1-PWMLow2")
+        print("PWM three low")
+        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
     elif PWMTwoLow < PWMThreeLow and PWMThreeLow < PWMOneLow:# 2, 3, 1
-        print()
+        print("PWM two low")
+        print("wait PWMHigh-PWM low 1")
+        print("PWM one low")
+        print("wait PWMHigh-PWMLow1-PWMLow2")
+        print("PWM three low")
+        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
     elif PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow:# 3, 1, 2
-        print()
-    #elif PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow# 3, 2, 1
-    else:
-        print()
+        print("PWM three low")
+        print("wait PWMHigh-PWM low 1")
+        print("PWM one low")
+        print("wait PWMHigh-PWMLow1-PWMLow2")
+        print("PWM two low")
+        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
+    else:#elif PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow# 3, 2, 1
+        print("PWM one low")
+        print("wait PWMHigh-PWM low 1")
+        print("PWM two low")
+        print("wait PWMHigh-PWMLow1-PWMLow2")
+        print("PWM three low")
+        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
         
 def Switchingcycle(degrees):
+    #Function envaluates which MOSFETs should be driven in 60 degree increments
     if degrees < 60:#0-60
         print("1 high, 2 low, 3 high")
         #MOSFETS
@@ -107,14 +129,10 @@ def Switchingcycle(degrees):
 
 for x in range(6):
     p1mos, p2mos, p3mos = Switchingcycle(x*10)
-    cycles= #number of cycles in 60 degrees
-    for y in range(cycles)
+    cycles= (period/(switchingPeriod*6))    #number of cycles in 60 degrees
+    for y in range(cycles):
         counter=cycles*x+y
         PWMCycleOrder(LineOneHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter])#takes in timing arguments
         
 
 # think we need to find a whole number so we dont have to deal with decimals and pain
-
-#def a function to do the execute stage of the if
-#def a function to tell which mosfets to switch
-#assume ideal switch then fix
