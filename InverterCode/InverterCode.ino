@@ -207,11 +207,4 @@ void loop() {
         PWMCycleOrder(LineOneHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter])//#takes in timing arguments
     }
   }
-}    
-  
-  //for x in range(6):
-  //  p1mos, p2mos, p3mos = Switchingcycle(x*10)
-   // cycles= int(period/(switchingPeriod*6))//    #number of cycles in 60 degrees
-   // for y in range(cycles-1):
-     //   counter=cycles*x+y
-     //   PWMCycleOrder(LineOneHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter])//#takes in timing 
+}
