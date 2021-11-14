@@ -1,9 +1,0 @@
-
-Todo list:
-
-1. 	Get delays working within one switching period
-2.	Get working for 360 deg
-3.	Dead times
-4.	Port to arduino
-5.	Test
-6. 	Profit!
