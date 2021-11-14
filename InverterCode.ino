@@ -1,6 +1,4 @@
 void setup() {
-  // put your setup code here, to run once:
-  
   pinMode(1,OUTPUT);
   pinMode(2,OUTPUT);
   pinMode(3,OUTPUT);
