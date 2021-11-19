@@ -17,7 +17,7 @@ void setup() {
 
 void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Trans,Phase3Trans){
     //sort the turn off of the three lines into chronological order per switching cycle
-    if (PWMOneLow < PWMTwoLow && PWMTwoLow < PWMThreeLow){//1, 2 , 3
+    if(PWMOneLow < PWMTwoLow && PWMTwoLow < PWMThreeLow){ //1, 2, 3
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
@@ -34,7 +34,7 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
         delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
         }
       
-    if (PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){// 1, 3, 2
+    else if(PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){ //1, 3, 2
     
         delay(PWMHigh-PWMOneLow-PWMTwoLow);
         pinMode(Phase2Trans, LOW);
@@ -44,7 +44,7 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
         
         delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
     }
-    if (PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){// 1, 3, 2
+    else if(PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){ //1, 3, 2
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
@@ -52,20 +52,20 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
         delay(PWMHigh-PWMOneLow);
         pinMode(Phase1Trans, LOW);
         //PWM three low
-        delay(PWMOneLow-PWMThreeLow);
+        delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase3Trans, LOW);
         //PWM two low
         delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase2Trans, LOW);
         //delay for rest of switching period
         delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
-        }
-    if(PWMTwoLow < PWMOneLow && PWMOneLow < PWMThreeLow){//2, 1, 3
+    }
+    else if(PWMTwoLow < PWMOneLow && PWMOneLow < PWMThreeLow){ //2, 1, 3
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         //PWM two low
-        delay(PWMHigh-PWMTwoLow);
+        delay(PWMHigh-PWMOneLow);
         pinMode(Phase2Trans, LOW);
         //print("PWM one low")
         delay(PWMOneLow-PWMTwoLow);
@@ -75,9 +75,9 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
         pinMode(Phase3Trans, LOW);
         //delay for rest of period
         delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
-        }
+    }
       
-    if(PWMTwoLow < PWMThreeLow && PWMThreeLow < PWMOneLow){//:# 2, 3, 1
+    else if(PWMTwoLow < PWMThreeLow && PWMThreeLow < PWMOneLow){ // 2, 3, 1
         //need to finish off doing these delays
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
@@ -89,105 +89,157 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
         delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMLow2-PWMLow3);
+        delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase1Trans, LOW);
         
         delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
-        }
+    }
         
-    if PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow){ // 3, 1, 2
+    else if(PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow){ // 3, 1, 2
         
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         
-        delay(PWMHigh-PWMLow1);
+        delay(PWMHigh-PWMOneLow);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMLow1-PWMLow2);
+        delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase1Trans, LOW);
 
-        delay(PWMLow2-PWMLow3);
+        delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase2Trans, LOW);
         
         delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
-        }
-    if (PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow){ // 3, 2, 1
+    }
+    else if(PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow){ // 3, 2, 1
         
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         
-        delay(PWMHigh-PWMLow1);
+        delay(PWMHigh-PWMOneLow);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMLow1-PWMLow2);
+        delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMLow2-PWMLow3);
+        delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase1Trans, LOW);
 
         delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
     }
-    if(PWMTwoLow < PWMThreeLow && PWMThreeLow < PWMOneLow){//:# 2, 3, 1
+    else if(PWMTwoLow < PWMThreeLow && PWMThreeLow < PWMOneLow){ // 2, 3, 1
         //need to finish off doing these delays
 
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
 
+        delay(PWMHigh-PWMOneLow);
+        pinMode(Phase2Trans, LOW);
+
+        delay(PWMOneLow-PWMTwoLow);
+        pinMode(Phase3Trans, LOW);
+
+        delay(PWMTwoLow-PWMThreeLow);
+        pinMode(Phase1Trans, LOW);
+
+        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+    }
+        /*
         print("PWM two low")
         print("wait PWMHigh-PWM low 1")
         print("PWM one low")
         print("wait PWMHigh-PWMLow1-PWMLow2")
         print("PWM three low")
         print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
-    elif PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow:# 3, 1, 2
+        */
+    else if(PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow) { //3, 1, 2
+        pinMode(Phase1Trans, HIGH);
+        pinMode(Phase2Trans, HIGH);
+        pinMode(Phase3Trans, HIGH);
+
+        delay(PWMHigh-PWMOneLow);
+        pinMode(Phase3Trans, LOW);
+
+        delay(PWMOneLow-PWMTwoLow);
+        pinMode(Phase1Trans, LOW);
+
+        delay(PWMTwoLow-PWMThreeLow);
+        pinMode(Phase2Trans, LOW);
+
+        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+    }
+        
+        /*
         print("PWM three low")
         print("wait PWMHigh-PWM low 1")
         print("PWM one low")
         print("wait PWMHigh-PWMLow1-PWMLow2")
         print("PWM two low")
         print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
-    else:#elif PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow# 3, 2, 1
+        */
+    else if(PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow) {  //3, 2, 1
+
+        pinMode(Phase1Trans, HIGH);
+        pinMode(Phase2Trans, HIGH);
+        pinMode(Phase3Trans, HIGH);
+
+        delay(PWMHigh-PWMOneLow);
+        pinMode(Phase3Trans, LOW);
+
+        delay(PWMOneLow-PWMTwoLow);
+        pinMode(Phase2Trans, LOW);
+
+        delay(PWMTwoLow-PWMThreeLow);
+        pinMode(Phase1Trans, LOW);
+
+        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+    }
+        /*
         print("PWM one low")
         print("wait PWMHigh-PWM low 1")
         print("PWM two low")
         print("wait PWMHigh-PWMLow1-PWMLow2")
         print("PWM three low")
         print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
+        */
   }
 
 void Switchingcycle(degrees){ 
     //Function evaluates which MOSFETs should be driven in 60 degree increments
-
-    if (degrees < 60:#0-60) {
+    int PhaseOneTransistor = 0;
+    int PhaseTwoTransistor = 0;
+    int PhaseThreeTransistor = 0;
+    
+    if (degrees < 60) { //0-60
         //print("1 high, 2 low, 3 high")
         //MOSFETS
         PhaseOneTransistor = 1;
         PhaseTwoTransistor = 5;
         PhaseThreeTransistor = 3;
     }
-    else if (degrees < 120:#60-120) 
+    else if (degrees < 120) { //60-120)
         //print("1 high, 2 low, 3 low")
         PhaseOneTransistor = 1;
         PhaseTwoTransistor = 5;
         PhaseThreeTransistor = 6;
     }
-    else if (degrees < 180:#120-180) 
+    else if (degrees < 180) {//120-180
         //print("1 high, 2 high, 3 low")
         PhaseOneTransistor = 1;
         PhaseTwoTransistor = 2; 
         PhaseThreeTransistor = 6;
     }
-   
-    else if (degrees < 240:#180-240) 
+    else if (degrees < 240){ //180-240 
         //print("1 low, 2 high, 3 high")
+        
         PhaseOneTransistor = 4;
         PhaseTwoTransistor = 2; 
         PhaseThreeTransistor = 3;
     }
-    else //(degrees      240-360)
+    else {                  //(degrees  240-360) ??
         //print("1 low, 2 low, 3 high")
         PhaseOneTransistor = 4;
         PhaseTwoTransistor = 5; 
