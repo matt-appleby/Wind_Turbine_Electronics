@@ -4,7 +4,6 @@ Conceptually easier and faster to run
 
 local: wind
 Todo:
---build visualistions
 --Assuming when a dead time occurs there won't be any current due to wave shape
 
 """
