@@ -44,7 +44,7 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         delay(PWMOneLow-PWMHigh);
         pinMode(Phase1Trans,LOW);
         
-        delay(PWMThreeLow-PWMOne);
+        delay(PWMThreeLow-PWMOneLow);
         pinMode(Phase3Trans, LOW);
 
         delay(PWMTwoLow-PWMThreeLow);
@@ -237,8 +237,8 @@ void loop() {
     int p3mos = Transistors[2];
     int cycles= int(period/(switchingPeriod*6));//    #number of cycles in 60 degrees
     for (int y = 0; y < (cycles-1); ++y ) {
-        int counter=cycles*x+y
-        PWMCycleOrder(LineOneHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter]);//#takes in timing arguments
+        int counter=cycles*x+y;
+        PWMCycleOrder(LineHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter], p1mos, p2mos, p3mos);//#takes in timing arguments
     }
   }
 }
