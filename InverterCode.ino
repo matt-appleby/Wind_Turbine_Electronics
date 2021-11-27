@@ -2,10 +2,11 @@
 int frequency=1;  //Hz
 float period=1/frequency; //s
 float switchingPeriod=0.05; //s
-float LineHigh={0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45};
-float LineOneLow={0.0, 0.065, 0.129, 0.19, 0.248, 0.3, 0.348, 0.39, 0.429, 0.466};
-float LineTwoLow={0.043, 0.084, 0.12, 0.155, 0.19, 0.225, 0.263, 0.304, 0.35, 0.401};
-float LineThreeLow={0.043, 0.099, 0.15, 0.196, 0.237, 0.275, 0.31, 0.355, 0.42, 0.483};
+float LineHigh[]={0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45};
+float LineOneLow[]={0.0, 0.065, 0.129, 0.19, 0.248, 0.3, 0.348, 0.39, 0.429, 0.466};
+float LineTwoLow[]={0.043, 0.084, 0.12, 0.155, 0.19, 0.225, 0.263, 0.304, 0.35, 0.401};
+float LineThreeLow[]={0.043, 0.099, 0.15, 0.196, 0.237, 0.275, 0.31, 0.355, 0.42, 0.483};
+int Transistors[3]={1,2,3};
 
 void setup() {
   pinMode(1,OUTPUT);
@@ -16,7 +17,7 @@ void setup() {
   pinMode(6,OUTPUT);
 }
 
-void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Trans,Phase3Trans){
+void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, int Phase1Trans, int Phase2Trans,int Phase3Trans){
     //sort the turn off of the three lines into chronological order per switching cycle
     if(PWMOneLow < PWMTwoLow && PWMTwoLow < PWMThreeLow){ //1, 2, 3
         pinMode(Phase1Trans, HIGH);
@@ -36,7 +37,9 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
         }
       
     else if(PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){ //1, 3, 2
-    
+        pinMode(Phase1Trans, HIGH);
+        pinMode(Phase2Trans, HIGH);
+        pinMode(Phase3Trans, HIGH);
         delay(PWMHigh-PWMOneLow-PWMTwoLow);
         pinMode(Phase2Trans, LOW);
 
@@ -183,7 +186,7 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
     }
   }
 
-void Switchingcycle(degrees){ 
+void Switchingcycle(int degrees){ 
     //Function evaluates which MOSFETs should be driven in 60 degree increments
     int PhaseOneTransistor = 0;
     int PhaseTwoTransistor = 0;
@@ -221,8 +224,7 @@ void Switchingcycle(degrees){
         PhaseTwoTransistor = 5; 
         PhaseThreeTransistor = 3;
     }
-    
-    return PhaseOneTransistor, PhaseTwoTransistor, PhaseThreeTransistor
+    int Transistors[3]={PhaseOneTransistor, PhaseTwoTransistor, PhaseThreeTransistor};
 }
 void loop() {
   for (int x = 0; x < 6; ++x) {
