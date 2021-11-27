@@ -1,3 +1,12 @@
+
+int frequency=1;  //Hz
+float period=1/frequency; //s
+float switchingPeriod=0.05; //s
+float LineHigh={0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45};
+float LineOneLow={0.0, 0.065, 0.129, 0.19, 0.248, 0.3, 0.348, 0.39, 0.429, 0.466};
+float LineTwoLow={0.043, 0.084, 0.12, 0.155, 0.19, 0.225, 0.263, 0.304, 0.35, 0.401};
+float LineThreeLow={0.043, 0.099, 0.15, 0.196, 0.237, 0.275, 0.31, 0.355, 0.42, 0.483};
+
 void setup() {
   pinMode(1,OUTPUT);
   pinMode(2,OUTPUT);
@@ -5,14 +14,6 @@ void setup() {
   pinMode(4,OUTPUT);
   pinMode(5,OUTPUT);
   pinMode(6,OUTPUT);
-  
-  int frequency=1;  //Hz
-  float period=1/frequency; //s
-  float switchingPeriod=0.05; //s
-  float LineHigh={0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45};
-  float LineOneLow={0.0, 0.065, 0.129, 0.19, 0.248, 0.3, 0.348, 0.39, 0.429, 0.466};
-  float LineTwoLow={0.043, 0.084, 0.12, 0.155, 0.19, 0.225, 0.263, 0.304, 0.35, 0.401};
-  float LineThreeLow={-0.043, 0.001, 0.05, 0.104, 0.163, 0.225, 0.289, 0.355, 0.42, 0.483};
 }
 
 void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Trans,Phase3Trans){
