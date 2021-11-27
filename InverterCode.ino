@@ -24,61 +24,65 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMOneLow-PWMHigh);
         pinMode(Phase1Trans, LOW);
       
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMTwoLow-PWMOneLow);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMThreeLow-PWMTwoLow);
         pinMode(Phase3Trans, LOW);
         
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
+        delay(PWMHigh+switchingPeriod-PWMThreeLow);
         }
       
     else if(PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){ //1, 3, 2
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
-        delay(PWMHigh-PWMOneLow-PWMTwoLow);
-        pinMode(Phase2Trans, LOW);
-
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3);
-        pinMode(Phase3Trans, LOW);
         
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
+        delay(PWMOneLow-PWMHigh);
+        pinMode(Phase1Trans,LOW);
+        
+        delay(PWMThreeLow-PWMOne);
+        pinMode(Phase3Trans, LOW);
+
+        delay(PWMTwoLow-PWMThreeLow);
+        pinMode(Phase2Trans, LOW);
+        
+        delay(PWMHigh+switchingPeriod-PWMThreeLow);
     }
     else if(PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){ //1, 3, 2
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         //PWM one low
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMOneLow-PWMHigh);
         pinMode(Phase1Trans, LOW);
         //PWM three low
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMThreeLow-PWMOneLow);
         pinMode(Phase3Trans, LOW);
         //PWM two low
         delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase2Trans, LOW);
         //delay for rest of switching period
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
+        delay(PWMHigh+switchingPeriod-PWMTwoLow);
     }
     else if(PWMTwoLow < PWMOneLow && PWMOneLow < PWMThreeLow){ //2, 1, 3
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         //PWM two low
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMOneLow-PWMHigh);
         pinMode(Phase2Trans, LOW);
         //print("PWM one low")
         delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase1Trans, LOW);
         //PWM three low
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMThreeLow-PWMOneLow);
         pinMode(Phase3Trans, LOW);
         //delay for rest of period
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
+        delay(PWMHigh+switchingPeriod-PWMThreeLow);
     }
       
     else if(PWMTwoLow < PWMThreeLow && PWMThreeLow < PWMOneLow){ // 2, 3, 1
@@ -87,16 +91,16 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMTwoLow-PWMHigh);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMThreeLow-PWMTwoLow);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMOneLow-PWMThreeLow);
         pinMode(Phase1Trans, LOW);
         
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
+        delay(PWMHigh+switchingPeriod-PWMOneLow);
     }
         
     else if(PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow){ // 3, 1, 2
@@ -105,16 +109,16 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMThreeLow-PWMHigh);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMOneLow-PWMThreeLow);
         pinMode(Phase1Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMTwoLow-PWMOneLow);
         pinMode(Phase2Trans, LOW);
         
-        delay(PWMHigh-PWMLow1-PWMLow2-PWMLow3-switchingPeriod);
+        delay(PWMHigh+switchingPeriod-PWMTwoLow);
     }
     else if(PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow){ // 3, 2, 1
         
@@ -122,50 +126,49 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMThreeLow-PWMHigh);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase1Trans, LOW);
 
-        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+        delay(PWMHigh+switchingPeriod-PWMOneLow);
     }
     else if(PWMTwoLow < PWMThreeLow && PWMThreeLow < PWMOneLow){ // 2, 3, 1
-        //need to finish off doing these delays
 
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
 
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMTwoLow-PWMHigh);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMThreeLow-PWMTwoLow);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMOneLow-PWMThreeLow);
         pinMode(Phase1Trans, LOW);
 
-        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+        delay(PWMHigh+switchingPeriod-PWMOneLow);
     }
     else if(PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow) { //3, 1, 2
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
 
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMThreeLow-PWMHigh);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMOneLow-PWMThreeLow);
         pinMode(Phase1Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMTwoLow-PWMOneLow);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+        delay(PWMHigh+switchingPeriod-PWMTwoLow);
     }
     else if(PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow) {  //3, 2, 1
 
@@ -173,16 +176,16 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
 
-        delay(PWMHigh-PWMOneLow);
+        delay(PWMThreeLow-PWMHigh);
         pinMode(Phase3Trans, LOW);
 
-        delay(PWMOneLow-PWMTwoLow);
+        delay(PWMTwoLow-PWMThreeLow);
         pinMode(Phase2Trans, LOW);
 
-        delay(PWMTwoLow-PWMThreeLow);
+        delay(PWMOneLow-PWMTwoLow);
         pinMode(Phase1Trans, LOW);
 
-        delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
+        delay(PWMHigh+switchingPeriod-PWMOneLow);
     }
   }
 
@@ -228,11 +231,14 @@ void Switchingcycle(int degrees){
 }
 void loop() {
   for (int x = 0; x < 6; ++x) {
-    p1mos, p2mos, p3mos = Switchingcycle(x*10)
-    cycles= int(period/(switchingPeriod*6))//    #number of cycles in 60 degrees
+    Switchingcycle(x*10);
+    int p1mos = Transistors[0];
+    int p2mos = Transistors[1];
+    int p3mos = Transistors[2];
+    int cycles= int(period/(switchingPeriod*6));//    #number of cycles in 60 degrees
     for (int y = 0; y < (cycles-1); ++y ) {
-        counter=cycles*x+y
-        PWMCycleOrder(LineOneHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter])//#takes in timing arguments
+        int counter=cycles*x+y
+        PWMCycleOrder(LineOneHigh[counter], LineOneLow[counter], LineTwoLow[counter], LineThreeLow[counter]);//#takes in timing arguments
     }
   }
 }
