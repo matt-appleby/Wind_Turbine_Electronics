@@ -148,14 +148,6 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
 
         delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
     }
-        /*
-        print("PWM two low")
-        print("wait PWMHigh-PWM low 1")
-        print("PWM one low")
-        print("wait PWMHigh-PWMLow1-PWMLow2")
-        print("PWM three low")
-        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
-        */
     else if(PWMThreeLow < PWMOneLow and PWMOneLow < PWMTwoLow) { //3, 1, 2
         pinMode(Phase1Trans, HIGH);
         pinMode(Phase2Trans, HIGH);
@@ -172,15 +164,6 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
 
         delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
     }
-        
-        /*
-        print("PWM three low")
-        print("wait PWMHigh-PWM low 1")
-        print("PWM one low")
-        print("wait PWMHigh-PWMLow1-PWMLow2")
-        print("PWM two low")
-        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
-        */
     else if(PWMThreeLow < PWMTwoLow and PWMTwoLow < PWMOneLow) {  //3, 2, 1
 
         pinMode(Phase1Trans, HIGH);
@@ -198,14 +181,6 @@ void PWMCycleOrder(PWMHigh,PWMOneLow,PWMTwoLow,PWMThreeLow,Phase1Trans,Phase2Tra
 
         delay(PWMHigh-PWMOneLow-PWMTwoLow-PWMThreeLow);
     }
-        /*
-        print("PWM one low")
-        print("wait PWMHigh-PWM low 1")
-        print("PWM two low")
-        print("wait PWMHigh-PWMLow1-PWMLow2")
-        print("PWM three low")
-        print("wait PWMHigh-PWMLow1-PWMLow2-PWMLow3")
-        */
   }
 
 void Switchingcycle(degrees){ 
