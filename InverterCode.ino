@@ -73,7 +73,7 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase2Trans, HIGH);
         pinMode(Phase3Trans, HIGH);
         //PWM two low
-        delay(PWMOneLow-PWMHigh);
+        delay(PWMTwoLow-PWMHigh);
         pinMode(Phase2Trans, LOW);
         //print("PWM one low")
         delay(PWMOneLow-PWMTwoLow);
