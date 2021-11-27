@@ -34,19 +34,25 @@ LineOneHigh, LineOneLow = PhaseTimingGen(0)
 LineTwoHigh, LineTwoLow = PhaseTimingGen(2*3.14/3)
 LineThreeHigh, LineThreeLow = PhaseTimingGen(-2*3.14/3)
 
-print("Line One")
+#Convert from secounds to millis for Arduino
+LineOneHigh=[x*1000 for x in LineOneHigh]
+LineOneLow=[x*1000 for x in LineOneLow]
+LineTwolow=[x*1000 for x in LineTwoLow]
+LineThreeLow=[x*1000 for x in LineThreeLow]
+
+print("High")
 print(LineOneHigh)
+
+print("Line One")
 print(LineOneLow)
 
 print("Line Two")
-print(LineTwoHigh)
 print(LineTwoLow)
 
 print("Line Three")
-print(LineThreeHigh)
 print(LineThreeLow)
 
-print("Time between for loops in arduino")
+print("Time between for loops in arduino:")
 print(period/6)
 
 # think we need to find a whole number so we dont have to deal with decimals and pain
