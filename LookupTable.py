@@ -37,7 +37,7 @@ LineThreeHigh, LineThreeLow = PhaseTimingGen(-2*3.14/3)
 #Convert from secounds to millis for Arduino
 LineOneHigh=[x*1000 for x in LineOneHigh]
 LineOneLow=[x*1000 for x in LineOneLow]
-LineTwolow=[x*1000 for x in LineTwoLow]
+LineTwoLow=[x*1000 for x in LineTwoLow]
 LineThreeLow=[x*1000 for x in LineThreeLow]
 
 print("High")
