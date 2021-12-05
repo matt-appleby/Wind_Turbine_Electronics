@@ -24,20 +24,23 @@ void setup() {
 void loop() { //Would 600 iterations of loop equal a minute?
   // put your main code here, to run repeatedly:
   
-  LDRValue = digitalRead(LDRpin); //Read value from LDR
-  Serial.println(LDRValue); //Print the value to the serial port
-  delay(100); //waits for 100ms
-  int current = LDRValue;
-  if (current == 0 && previous == 1) {
-    sum = sum + 1;
-    previous = current;
-  }
   m = m + 1; //counter for 600 iterations
-  if (m == 600) {
-    total = sum;
-    Serial.println(total);
-   // every 1-> 0 is revolution, so count number of 1->0's in 600 iterations (if every iteration takes 100 ms then 10 x 60 = 600) 
+  //Serial.println(m);
+  LDRValue = digitalRead(LDRpin); //Read value from LDR
+  //Serial.println(LDRValue); //Print the value to the serial port
+  delay(100); //waits for 100ms
+  //int current = LDRValue;
+  if (LDRValue == 0 && previous == 1) {
+    sum = sum + 1; //counts revolutions
   }
+  if (m == 600) { //Next figure out if you can do for 1200, 1800, 2400... recurring to look at rpm over time
+    Serial.println(sum);
+  }
+  
+  previous = LDRValue;
+   
+  //every 1-> 0 is revolution, so count number of 1->0's in 600 iterations (if every iteration takes 100 ms then 10 x 60 = 600) 
+  
  
   /* Solution using array
   // 1 is when light is shining 
