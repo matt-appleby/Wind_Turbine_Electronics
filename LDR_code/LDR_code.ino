@@ -30,18 +30,20 @@ void loop() { //Would 600 iterations of loop equal a minute?
   //Serial.println(m);
   LDRValue = digitalRead(LDRpin); //Read value from LDR
   //Serial.println(LDRValue); //Print the value to the serial port
-  delay(100); //waits for 100ms
+  delay(10); //waits for 100ms -> this control how quickly photoresistor reads light so at higher RPM's decrease this value
   //int current = LDRValue;
   if (LDRValue == 0 && previous == 1) {
     sum = sum + 1.0; //counts revolutions
   }
   
-  if (m == 100) { //Next figure out if you can do for 1200, 1800, 2400... recurring to look at rpm over time
+  if (m == 200) { //m should be 600 but due to arduino serial plotter issues I used a smaller sample size, this value is inversely related to delay(10)
     Serial.println(sum);
     
   }
-  else if ((m-(100*n)) == 100) {
+  
+  if ((m-(200*n)) == 200) { 
     k = sum / x;
+    k = k * 30.0;
     Serial.println(k);
     x = x + 1;
     n = n + 1;
