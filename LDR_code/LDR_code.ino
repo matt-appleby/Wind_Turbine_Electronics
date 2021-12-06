@@ -12,7 +12,7 @@ int LDRValue = 0; //result of reading analog pin
 int m = 0;
 int sum = 0;
 int previous = 0;
-int total = 0;
+int n = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -33,8 +33,9 @@ void loop() { //Would 600 iterations of loop equal a minute?
   if (LDRValue == 0 && previous == 1) {
     sum = sum + 1; //counts revolutions
   }
-  if (m == 600) { //Next figure out if you can do for 1200, 1800, 2400... recurring to look at rpm over time
+  if (m == 600 or m-(600*n) == 600) { //Next figure out if you can do for 1200, 1800, 2400... recurring to look at rpm over time
     Serial.println(sum);
+    n = n + 1;
   }
   
   previous = LDRValue;
