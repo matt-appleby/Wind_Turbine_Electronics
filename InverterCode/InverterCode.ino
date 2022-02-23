@@ -1,11 +1,11 @@
 
 int frequency=1;  //Hz
 float period=1/frequency; //s
-float switchingPeriod=0.05; //s
-float LineHigh[]={0.0, 50.0, 100.0, 150.0, 200.0, 250.0, 300.0, 350.0, 400.0, 450.0};
-float LineOneLow[]={0.0, 65.0, 129.0, 190.0, 248.0, 300.0, 348.0, 390.0, 429.0, 466.0};
-float LineTwoLow[]={43.0, 84.0, 120.0, 155.0, 210.0, 275.0, 337.0, 396.0, 450.0, 499.0};
-float LineThreeLow[]={43.0, 99.0, 150.0, 196.0, 237.0, 275.0, 310.0, 355.0, 420.0, 483.0};
+float switchingPeriod=500; //ms
+float LineHigh[]={0.0, 500.0, 1000.0, 1500.0, 2000.0, 2500.0, 3000.0, 3500.0, 4000.0, 4500.0};
+float LineOneLow[]={0.0, 650.0, 1290.0, 1900.0, 2480.0, 3000.0, 3480.0, 3900.0, 4290.0, 4660.0};
+float LineTwoLow[]={431.0, 840.0, 1200.0, 1550.0, 2100.0, 2751.0, 3370.0, 3960.0, 4500.0, 4990.0};
+float LineThreeLow[]={430.0, 990.0, 1500.0, 1960.0, 2370.0, 2750.0, 3100.0, 3550.0, 4200.0, 4830.0};
 int Transistors[3]={1,2,3};
 
 void setup() {
@@ -34,6 +34,7 @@ void PWMCycleOrder(int PWMHigh, int PWMOneLow,int PWMTwoLow, int PWMThreeLow, in
         pinMode(Phase3Trans, LOW);
         
         delay(PWMHigh+switchingPeriod-PWMThreeLow);
+
         }
       
     else if(PWMOneLow < PWMThreeLow && PWMThreeLow < PWMTwoLow){ //1, 3, 2

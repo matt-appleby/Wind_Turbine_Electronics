@@ -11,16 +11,23 @@ void setup() {
 }
 
 void loop() {
-  Serial.print(digitalRead(2));
+  int pin2 = digitalRead(2);
+  int pin3 = digitalRead(3);
+  int pin4 = digitalRead(4);
+  int pin5 = digitalRead(5);
+  int pin6 = digitalRead(6);
+  int pin7 = digitalRead(7);
+  delay(10);
+  Serial.print(pin2);
   Serial.print(" ");
-  Serial.print(digitalRead(3));
+  Serial.print(pin3+2);
   Serial.print(" ");
-  Serial.print(digitalRead(4));
+  Serial.print(pin4+4);
   Serial.print(" ");
-  Serial.print(digitalRead(5));
+  Serial.print(pin5+6);
   Serial.print(" ");
-  Serial.println(digitalRead(6));
+  Serial.print(pin6+8);
   Serial.print(" ");
-  Serial.println(digitalRead(7));
-  delay(100);
+  Serial.println(pin7+10);
+  delay(20);
   }
